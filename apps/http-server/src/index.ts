@@ -27,6 +27,8 @@ app.post("/register", async (req, res) => {
 
 })
 
-app.listen("3002", () => {
-  console.log("HTTP server listening on port 3002");
+const PORT = 3002;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("HTTP server listening on port ", PORT);
 });
