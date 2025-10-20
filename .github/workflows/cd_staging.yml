@@ -21,7 +21,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/stage-key ubuntu@98.84.132.41 -t "
             cd code/monorepo-deploy/
-
+            git remote set-url origin https://github.com/Harsh8089/monorepo-deploy.git
             git checkout main
             git pull
           "
