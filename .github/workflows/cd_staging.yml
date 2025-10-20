@@ -8,6 +8,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Test CD pipeline
+      - name: Setup SSH
         run: |
-          echo "Test CD pipeline"
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/stage-key
+          chmod 600 ~/.ssh/stage-key
+
+      - name: List dir
+        run: |
+          ssh -i ~/.ssh/stage-key ubuntu@98.84.132.41
+          ls
