@@ -12,15 +12,15 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/stage-key
-
           chmod 600 ~/.ssh/stage-key
 
+          # Start SSH agent and add key with passphrase
           eval $(ssh-agent -s)
-          echo "${{ secrets.SSH_PASSPHRASE }}" > ~/.ssh/stage.key
+          echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/stage-key
 
           ssh-keyscan 98.84.132.41 >> ~/.ssh/known_hosts
 
-      - name: List dir
+      - name: Deploy
         run: |
           ssh -i ~/.ssh/stage-key ubuntu@98.84.132.41 -t "
             cd code/monorepo-deploy/
