@@ -5,7 +5,9 @@ on:
     branches: [main]
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-    run: |
-      echo "Test CD pipeline"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test CD pipeline
+        run: |
+          echo "Test CD pipeline"
