@@ -10,12 +10,14 @@ jobs:
     steps:
       - name: Setup SSH
         run: |
-          mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/stage-key
+          mkdir -p ~/.ssh
+          ls ~/.ssh
           chmod 600 ~/.ssh/stage-key
           ssh-keyscan 98.84.132.41 >> ~/.ssh/known_hosts
 
       - name: List dir
         run: |
-          ssh -i ~/.ssh/stage-key ubuntu@98.84.132.41
-          ls
+          ssh -i ~/.ssh/stage-key ubuntu@98.84.132.41 -t "
+            ls
+          "
