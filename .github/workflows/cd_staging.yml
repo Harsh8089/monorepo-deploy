@@ -19,5 +19,10 @@ jobs:
       - name: List dir
         run: |
           ssh -i ~/.ssh/stage-key ubuntu@98.84.132.41 -t "
-            ls
+            cd code/monorepo-deploy/
+            git checkout main
+            git pull
+            pnpm install
+            pnpm run build
+            pnpm run start
           "
