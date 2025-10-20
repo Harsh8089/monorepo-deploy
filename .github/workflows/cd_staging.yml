@@ -1,0 +1,11 @@
+name: "Deploy to staging env"
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+    run: |
+      echo "Test CD pipeline"
