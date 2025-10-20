@@ -13,6 +13,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/stage-key
           chmod 600 ~/.ssh/stage-key
+          ssh-keyscan 98.84.132.41 >> ~/.ssh/known_hosts
 
       - name: List dir
         run: |
